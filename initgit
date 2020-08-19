@@ -1,0 +1,20 @@
+#!/bin/bash
+git init
+git add .
+git status
+
+echo '------------------------'
+read -p "Press enter to continue"
+
+git commit -m 'initial commit'
+
+read -r -p "Public? [Y/n] " response
+
+if [[ "$response" =~ ^([nN][oO]|[nN])$ ]]
+then
+    gh repo create
+else
+    gh repo create --public
+fi
+
+git push -u origin master
